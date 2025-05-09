@@ -126,6 +126,13 @@ I'm aware that this is not the most elegant solution, but it works for now.
 
 To get your bindings to work locally with vinxi, you can access the bindings using the getPlatformProxy method from wrangler. This logic is placed under a check if import.meta.env.DEV is true.
 
+To set the DEV environment variable in your local environment, use the `.dev.vars` file.
+
+```
+# .dev.vars
+DEV=true
+```
+
 ### Step 8: Use the getBindings method to access the Cloudflare bindings in server side logic
 ```ts
 const bindings = getBindings();
