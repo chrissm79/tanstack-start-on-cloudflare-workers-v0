@@ -1,3 +1,7 @@
+import { DefaultCatchBoundary } from "@/components/default-catch-boundary";
+import { NotFound } from "@/components/not-found";
+import { QueryProvider } from "@/components/providers/query-provider";
+import { seo } from "@/utils/seo";
 import {
   HeadContent,
   Link,
@@ -7,10 +11,8 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import * as React from "react";
-import { DefaultCatchBoundary } from "~/components/DefaultCatchBoundary";
-import { NotFound } from "~/components/NotFound";
-import appCss from "~/styles/app.css?url";
-import { seo } from "~/utils/seo";
+
+import globalCss from "@/global.css?url";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -29,7 +31,10 @@ export const Route = createRootRoute({
       }),
     ],
     links: [
-      { rel: "stylesheet", href: appCss },
+      {
+        rel: "stylesheet",
+        href: globalCss,
+      },
       {
         rel: "apple-touch-icon",
         sizes: "180x180",
@@ -65,7 +70,9 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <RootDocument>
-      <Outlet />
+      <QueryProvider>
+        <Outlet />
+      </QueryProvider>
     </RootDocument>
   );
 }
@@ -88,37 +95,12 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             Home
           </Link>{" "}
           <Link
-            to="/posts"
-            activeProps={{
-              className: "font-bold",
-            }}
-          >
-            Posts
-          </Link>{" "}
-          <Link
-            to="/route-a"
-            activeProps={{
-              className: "font-bold",
-            }}
-          >
-            Pathless Layout
-          </Link>{" "}
-          <Link
             to="/deferred"
             activeProps={{
               className: "font-bold",
             }}
           >
             Deferred
-          </Link>{" "}
-          <Link
-            // @ts-expect-error
-            to="/this-route-does-not-exist"
-            activeProps={{
-              className: "font-bold",
-            }}
-          >
-            This Route Does Not Exist
           </Link>
         </div>
         <hr />

@@ -1,25 +1,25 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "tanstack-start-on-workers-v0",
+  "name": "barrels-tanstack-start",
   "main": ".output/server/index.mjs",
-  "compatibility_date": "2025-04-10",
+  "compatibility_date": "2025-06-04",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": ".output/public",
   },
+  "kv_namespaces": [
+    {
+      "binding": "COUNTER",
+      "id": "3c32c013370342949a5b9475ec539361",
+    },
+  ],
   "observability": {
     "enabled": true,
   },
-  "kv_namespaces": [
-    {
-      "binding": "CACHE",
-      "id": "5d8a8ea387f348f7a156ffd98384998c",
-    },
-  ],
-  "routes": [
-    {
-      "custom_domain": true,
-      "pattern": "tanstackstart.backpine.com",
-    },
-  ],
+  // "routes": [
+  //   {
+  //     "custom_domain": true,
+  //     "pattern": "tanstackstart.backpine.com",
+  //   },
+  // ],
 }
